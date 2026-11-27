@@ -60,6 +60,15 @@ body.in #jb{display:block}
 </style>
 </head>
 <body>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(() => console.log("Service Worker aktif"))
+      .catch(error => console.error("Service Worker error:", error));
+  });
+}
+  </script>
 <canvas id="c"></canvas>
 <div id="hf"></div>
 <div id="bars" class="hud">
@@ -97,7 +106,7 @@ next();
 })();
 </script>
 <script type="text/plain" id="game">
-'use strict';
+ 'use strict';
 var $=function(i){return document.getElementById(i)};
 if(typeof THREE==='undefined'){document.body.innerHTML='<div style="padding:30px;font-size:18px">Three.js gagal dimuat. Periksa internet lalu muat ulang halaman.</div>';throw new Error('no three')}
 
